@@ -6,7 +6,7 @@ const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
 
 const AppContext = React.createContext()
 
-const AppProvider = ({ children }) => {
+export const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('a')
   const [cocktails, setCocktails] = useState([])
@@ -44,4 +44,4 @@ export const useGlobalContext = () => {
   return useContext(AppContext)
 }
 
-export { AppContext, AppProvider }
+// export { AppContext, AppProvider } //?? only export AppProvider

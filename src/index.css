@@ -332,14 +332,19 @@ Cocktail
   margin-right: 0.5rem;
 }
 .drink-data {
+  margin-bottom: 0.5rem;
   background: var(--primaryLightColor);
   padding: 0.25rem 0.5rem;
   border-radius: var(--mainBorderRadius);
   color: var(--primaryColor);
+  text-transform: capitalize;
 }
 
 .drink-info {
   padding-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 1rem;
 }
 @media screen and (min-width: 992px) {
   .drink {
