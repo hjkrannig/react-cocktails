@@ -1,25 +1,25 @@
-import React from 'react'
-import Loading from '../components/Loading'
-import { useParams, Link } from 'react-router-dom'
-import SingleCocktailComp from '../components/SingleCocktailComp'
+import React from "react";
+import Loading from "../components/Loading";
+import { useParams } from "react-router-dom";
+import SingleCocktailComp from "../components/SingleCocktailComp";
 
-const url = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='
+const url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
 const SingleCocktail = () => {
-  const { id } = useParams()
-  const [loading, setLoading] = React.useState(true)
-  const [cocktail, setCocktail] = React.useState(null)
+  const { id } = useParams();
+  const [loading, setLoading] = React.useState(true);
+  const [cocktail, setCocktail] = React.useState(null);
 
   const fetchCocktail = React.useCallback(async () => {
     try {
-      setLoading(true)
-      const response = await fetch(`${url}${id}`)
+      setLoading(true);
+      const response = await fetch(`${url}${id}`);
       if (!response.ok) {
-        console.log('fetch-response not OK')
-        setLoading(false)
-        return
+        console.log("fetch-response not OK");
+        setLoading(false);
+        return;
       }
-      const data = await response.json()
+      const data = await response.json();
       if (data.drinks) {
         const {
           strDrink: name,
@@ -43,7 +43,7 @@ const SingleCocktail = () => {
           strIngredient13,
           strIngredient14,
           strIngredient15,
-        } = data.drinks[0]
+        } = data.drinks[0];
 
         const ingredients = [
           strIngredient1,
@@ -61,7 +61,7 @@ const SingleCocktail = () => {
           strIngredient13,
           strIngredient14,
           strIngredient15,
-        ]
+        ];
 
         const newCocktail = {
           name,
@@ -71,30 +71,30 @@ const SingleCocktail = () => {
           glass,
           instructions,
           ingredients,
-        }
+        };
 
-        setCocktail(newCocktail)
+        setCocktail(newCocktail);
       } else {
-        setCocktail(null)
+        setCocktail(null);
       }
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
-      console.log(error)
-      setLoading(false)
+      console.log(error);
+      setLoading(false);
     }
-    setLoading(false)
-  }, [id])
+    setLoading(false);
+  }, [id]);
   React.useEffect(() => {
-    fetchCocktail()
-  }, [id, fetchCocktail])
+    fetchCocktail();
+  }, [id, fetchCocktail]);
 
   if (loading) {
-    return <Loading />
+    return <Loading />;
   }
   if (!cocktail) {
-    return <h2 className="section-title">no cocktail to display</h2>
+    return <h2 className="section-title">no cocktail to display</h2>;
   }
-  return <SingleCocktailComp cocktail={cocktail} />
-}
+  return <SingleCocktailComp cocktail={cocktail} />;
+};
 
-export default SingleCocktail
+export default SingleCocktail;

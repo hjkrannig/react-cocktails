@@ -6,6 +6,10 @@ const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
 
 const AppContext = React.createContext()
 
+// AppProvider returns the AppContext.Provider with values 
+// controlled by useState(). This is what has to wrap the 
+// complete App-Structure... useGlobalContext() returns the 
+// state-variables and setFunctions!
 export const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('a')
